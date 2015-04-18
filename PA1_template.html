@@ -77,7 +77,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li>First I am asked to calculate the total number of steps taken per day</li>
 </ol>
 <pre class="r"><code>dailysteps&lt;-tapply(act$steps,act$date,sum,na.rm=TRUE)</code></pre>
-<p>Here I use <code>na.rm=TRUE</code>, so I ignore the missing values. Notice that <code>act$date</code> is already a factor variable, and I don’t have to convert it to <code>Date</code> class.</p>
+<pre><code>Here I use `na.rm=TRUE`, so I ignore the missing values. Notice that `act$date` is already a factor variable, and I don't have to convert it to `Date` class.</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Second I am asked to make a histogram of the total number of steps taken each day</li>
 </ol>
