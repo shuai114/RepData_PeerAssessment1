@@ -74,10 +74,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h2>What is mean total number of steps taken per day?</h2>
 <p>For this part of the assignment, I am allowed to ignore the missing values in the dataset.</p>
 <ol style="list-style-type: decimal">
-<li>First I am asked to calculate the total number of steps taken per day</li>
+<li><p>First I am asked to calculate the total number of steps taken per day</p></li>
+<li><p>Have a try!</p></li>
 </ol>
 <pre class="r"><code>dailysteps&lt;-tapply(act$steps,act$date,sum,na.rm=TRUE)</code></pre>
-<pre><code>Here I use `na.rm=TRUE`, so I ignore the missing values. Notice that `act$date` is already a factor variable, and I don't have to convert it to `Date` class.</code></pre>
+<p>Here I use <code>na.rm=TRUE</code>, so I ignore the missing values. Notice that <code>act$date</code> is already a factor variable, and I don’t have to convert it to <code>Date</code> class.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Second I am asked to make a histogram of the total number of steps taken each day</li>
 </ol>

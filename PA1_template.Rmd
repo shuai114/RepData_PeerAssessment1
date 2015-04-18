@@ -31,11 +31,13 @@ For this part of the assignment, I am allowed to ignore the missing values in th
 
 1. First I am asked to calculate the total number of steps taken per day
 
+2. Have a try!
+
 ```{r}
 dailysteps<-tapply(act$steps,act$date,sum,na.rm=TRUE)
 ```
 
-    Here I use `na.rm=TRUE`, so I ignore the missing values. Notice that `act$date` is already a factor variable, and I don't have to convert it to `Date` class.
+Here I use `na.rm=TRUE`, so I ignore the missing values. Notice that `act$date` is already a factor variable, and I don't have to convert it to `Date` class.
     
 2. Second I am asked to make a histogram of the total number of steps taken each day
 
