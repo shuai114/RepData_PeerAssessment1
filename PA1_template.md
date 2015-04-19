@@ -25,18 +25,16 @@ act<-read.csv("activity.csv")
 
 For this part of the assignment, I am allowed to ignore the missing values in the dataset.
 
-1. First I am asked to calculate the total number of steps taken per day
-
-2. Have a try!
+1. First I am asked to calculate the total number of steps taken per day.
 
 
 ```r
 dailysteps<-tapply(act$steps,act$date,sum,na.rm=TRUE)
 ```
 
-Here I use `na.rm=TRUE`, so I ignore the missing values. Notice that `act$date` is already a factor variable, and I don't have to convert it to `Date` class.
-    
-2. Second I am asked to make a histogram of the total number of steps taken each day
+   Here I use `na.rm=TRUE`, so I ignore the missing values. Notice that `act$date` is already a factor variable, and I don't have to convert it to `Date` class.
+
+2. Second I am asked to make a histogram of the total number of steps taken each day. You can see from the histogram that there are many days (more than ten) with zero or small total number of steps taken (less than or equal to 5000). It is possibly due to ignoring the missing values, because days with all missing values in the number of steps taken will have zeros as totals, and days with some but not all missing values will have small numbers as totals.
 
 
 ```r
@@ -44,8 +42,6 @@ hist(dailysteps,col="green")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
-
-You can see from the histogram that there are many days (more than ten) with zero or small total number of steps taken (less than or equal to 5000). It is possibly due to ignoring the missing values, because days with all missing values in the number of steps taken will have zeros as totals, and days with some but not all missing values will have small numbers as totals.
 
 3. Then I am asked to calculate and report the mean and median of the total number of steps taken per day
 
