@@ -29,11 +29,11 @@ act<-read.csv("activity.csv")
 
 For this part of the assignment, I am allowed to ignore the missing values in the dataset.
 
-1. First I am asked to calculate the total number of steps taken per day.
+1. First I am asked to calculate the total number of steps taken per day. Here I use `na.rm=TRUE`, so I ignore the missing values. Notice that `act$date` is already a factor variable, and I don't have to convert it to `Date` class.
+
 ```{r}
 dailysteps<-tapply(act$steps,act$date,sum,na.rm=TRUE)
 ```
-Here I use `na.rm=TRUE`, so I ignore the missing values. Notice that `act$date` is already a factor variable, and I don't have to convert it to `Date` class.
 
 2. Second I am asked to make a histogram of the total number of steps taken each day. You can see from the histogram that there are many days (more than ten) with zero or small total number of steps taken (less than or equal to 5000). It is possibly due to ignoring the missing values, because days with all missing values in the number of steps taken will have zeros as totals, and days with some but not all missing values will have small numbers as totals.
 
@@ -41,7 +41,7 @@ Here I use `na.rm=TRUE`, so I ignore the missing values. Notice that `act$date` 
 hist(dailysteps,col="green")
 ```
 
-3. Then I am asked to calculate and report the mean and median of the total number of steps taken per day
+3. Then I am asked to calculate and report the mean and median of the total number of steps taken per day.
 
 ```{r}
 mean<-mean(dailysteps)
@@ -50,27 +50,17 @@ median<-median(dailysteps)
 median
 ```
 
-Thus the mean and median of the total number of steps taken per day are `r round(mean,2)` and `r median` respectively.
+    Thus the mean and median of the total number of steps taken per day are `r round(mean,2)` and `r median` respectively.
     
 ## What is the average daily activity pattern?
 
 For this part of the assignment, I assume that I am still allowed to ignore the missing values in the dataset, because imputing missing values is the next part of this assignment. In fact, one can find out that all days in this dataset have either all missing values or all non-missing values for number of steps taken in the 5-minute intervals, so it will not impact the result of this part even after imputting the missing values by the means for the corresponding 5-minute intervals.
 
-1. First I am asked to make a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis). So in the first place I need to calculate the average number of steps taken at each 5-minute interval across all days.
+1. First I am asked to make a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis). So I calculate the average number of steps taken at each 5-minute interval across all days, get the x-axis labels, and then I make the time series plot, which shows the average daily activity pattern.
 
 ```{r}
 tssteps<-tapply(act$steps,act$interval,mean,na.rm=TRUE)
-```
-
-To make the time series plot, I also need to get the x-axis labels.
-    
-```{r}
 interval<-dimnames(tssteps)[[1]]
-```
-
-Now make the time series plot. It shows the average daily activity pattern.
-    
-```{r}
 plot(interval,tssteps,type="l",xlab="Time in Day",ylab="Average Number of Steps Taken",main="Average Number of Steps Taken During a Day")
 ```
 
@@ -89,7 +79,11 @@ Thus the 5-minute interval requested is from `r maximalow` to `r maximaup`. It s
 
 As the presence of missing days may introduce bias into some calculations or summaries of the data, we need some way to handle the missing values.
 
-1. First let's calculate and report the total number of missing values in the dataset
+```{r, echo=FALSE}
+numna<-sum(is.na(act$steps))
+```
+
+1. First let's calculate and report the total number of missing values in the dataset. From the output, We can see that there is no missing values for the variables `date` and `interval`, and we have `r numna` missing values for the variable `steps`.
 
 ```{r}
 sum(is.na(act$date))
@@ -98,8 +92,6 @@ numna<-sum(is.na(act$steps))
 numna
 ```
 
-We can see that there is no missing values for the variables `date` and `interval`, and we have `r numna` missing values for the variable `steps`.
-    
 2. To fill in all of the missing values for the variable `steps` in the dataset, I am going to use the mean of the non-missing values with the corresponding 5-minute intervals. I also need to create a new dataset to contain the imputted values.
 
 ```{r}
