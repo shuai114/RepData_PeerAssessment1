@@ -50,7 +50,7 @@ median<-median(dailysteps)
 median
 ```
 
-  - Thus the mean and median of the total number of steps taken per day are `r round(mean,2)` and `r median` respectively.
+Thus the mean and median of the total number of steps taken per day are `r round(mean,2)` and `r median` respectively.
     
 ## What is the average daily activity pattern?
 

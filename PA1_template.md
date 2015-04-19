@@ -62,7 +62,7 @@ median
 ## [1] 10395
 ```
 
-  - Thus the mean and median of the total number of steps taken per day are 9354.23 and 10395 respectively.
+Thus the mean and median of the total number of steps taken per day are 9354.23 and 10395 respectively.
     
 ## What is the average daily activity pattern?
 
