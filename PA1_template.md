@@ -25,7 +25,7 @@ act<-read.csv("activity.csv")
 
 For this part of the assignment, I am allowed to ignore the missing values in the dataset.
 
-1. First I am asked to calculate the total number of steps taken per day.  
+1. First I am asked to calculate the total number of steps taken per day.
 
 ```r
 dailysteps<-tapply(act$steps,act$date,sum,na.rm=TRUE)
