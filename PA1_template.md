@@ -62,7 +62,7 @@ median
 ## [1] 10395
 ```
 
-    Thus the mean and median of the total number of steps taken per day are 9354.23 and 10395 respectively.
+ Thus the mean and median of the total number of steps taken per day are 9354.23 and 10395 respectively.
     
 ## What is the average daily activity pattern?
 
@@ -100,7 +100,7 @@ maximaup
 ## [1] 840
 ```
 
-    Thus the 5-minute interval requested is from 835 to 840. It should be in the morning, as the dataset is using the 24-hour format for the time in intervals.
+Thus the 5-minute interval requested is from 835 to 840. It should be in the morning, as the dataset is using the 24-hour format for the time in intervals.
 
 ## Imputing missing values
 
@@ -134,7 +134,7 @@ numna
 ## [1] 2304
 ```
 
-    From the output, We can see that there is no missing values for the variables `date` and `interval`, and we have 2304 missing values for the variable `steps`.
+From the output, We can see that there is no missing values for the variables `date` and `interval`, and we have 2304 missing values for the variable `steps`.
 
 - To fill in all of the missing values for the variable `steps` in the dataset, I am going to use the mean of the non-missing values with the corresponding 5-minute intervals. I also need to create a new dataset to contain the imputted values.
 
@@ -166,9 +166,9 @@ hist(newdailysteps,col="green")
 
 ![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
 
-    You can see from the histogram that there are less days (five now) with zero or small total number of steps taken (less than or equal to 5000), comparing with the histogram from the first part of the assignment.
+You can see from the histogram that there are less days (five now) with zero or small total number of steps taken (less than or equal to 5000), comparing with the histogram from the first part of the assignment.
 
-    Next I need to calculate and report the mean and median total number of steps taken per day.
+Next I need to calculate and report the mean and median total number of steps taken per day.
 
 
 ```r
@@ -190,7 +190,7 @@ newmedian
 ## [1] 10766.19
 ```
 
-    The new mean and median of the total number of steps taken per day after imputting are 10766.19 and 10766.19 respectively, which differ from the estimates from the first part of the assignment. So imputing missing data will change the estimates of the total daily number of steps. In fact it will make them larger when changed, because days previously with all missing values will now have positive totals instead of zero, and days previously with some but not all missing values will have larger totals.
+The new mean and median of the total number of steps taken per day after imputting are 10766.19 and 10766.19 respectively, which differ from the estimates from the first part of the assignment. So imputing missing data will change the estimates of the total daily number of steps. In fact it will make them larger when changed, because days previously with all missing values will now have positive totals instead of zero, and days previously with some but not all missing values will have larger totals.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -218,7 +218,7 @@ table(newact$weekday)
 tssteps<-tapply(newact$steps,interaction(newact$interval,newact$weekday),mean)
 ```
 
-    As before, I need to get the x-axis labels next.
+As before, I need to get the x-axis labels next.
 
 
 ```r
@@ -228,14 +228,14 @@ interval<-sapply(facsplit,function(x){x[1]})
 weekday<-sapply(facsplit,function(x){x[2]})
 ```
 
-    I am going to make the panel plot by using the lattice plotting system, thus I need to collect the relevant variables together into a data frame for my convenience.
+I am going to make the panel plot by using the lattice plotting system, thus I need to collect the relevant variables together into a data frame for my convenience.
 
 
 ```r
 paneldat<-data.frame(tssteps,Interval=as.integer(interval),weekday)
 ```
 
-    Now I make the requested panel plot. One can see that the activity patterns between weekdays and weekends are different.
+Now I make the requested panel plot. One can see that the activity patterns between weekdays and weekends are different.
 
 
 ```r

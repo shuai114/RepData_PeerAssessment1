@@ -50,7 +50,7 @@ median<-median(dailysteps)
 median
 ```
 
-    Thus the mean and median of the total number of steps taken per day are `r round(mean,2)` and `r median` respectively.
+ Thus the mean and median of the total number of steps taken per day are `r round(mean,2)` and `r median` respectively.
     
 ## What is the average daily activity pattern?
 
@@ -73,7 +73,7 @@ maximaup<-maximalow+5
 maximaup
 ```
 
-    Thus the 5-minute interval requested is from `r maximalow` to `r maximaup`. It should be in the morning, as the dataset is using the 24-hour format for the time in intervals.
+Thus the 5-minute interval requested is from `r maximalow` to `r maximaup`. It should be in the morning, as the dataset is using the 24-hour format for the time in intervals.
 
 ## Imputing missing values
 
@@ -88,7 +88,7 @@ numna<-sum(is.na(act$steps))
 numna
 ```
 
-    From the output, We can see that there is no missing values for the variables `date` and `interval`, and we have `r numna` missing values for the variable `steps`.
+From the output, We can see that there is no missing values for the variables `date` and `interval`, and we have `r numna` missing values for the variable `steps`.
 
 - To fill in all of the missing values for the variable `steps` in the dataset, I am going to use the mean of the non-missing values with the corresponding 5-minute intervals. I also need to create a new dataset to contain the imputted values.
 
@@ -115,9 +115,9 @@ newdailysteps<-tapply(newact$steps,newact$date,sum)
 hist(newdailysteps,col="green")
 ```
 
-    You can see from the histogram that there are less days (five now) with zero or small total number of steps taken (less than or equal to 5000), comparing with the histogram from the first part of the assignment.
+You can see from the histogram that there are less days (five now) with zero or small total number of steps taken (less than or equal to 5000), comparing with the histogram from the first part of the assignment.
 
-    Next I need to calculate and report the mean and median total number of steps taken per day.
+Next I need to calculate and report the mean and median total number of steps taken per day.
 
 ```{r}
 options(scipen=1)
@@ -127,7 +127,7 @@ newmedian<-median(newdailysteps)
 newmedian
 ```
 
-    The new mean and median of the total number of steps taken per day after imputting are `r round(newmean,2)` and `r round(newmedian,2)` respectively, which differ from the estimates from the first part of the assignment. So imputing missing data will change the estimates of the total daily number of steps. In fact it will make them larger when changed, because days previously with all missing values will now have positive totals instead of zero, and days previously with some but not all missing values will have larger totals.
+The new mean and median of the total number of steps taken per day after imputting are `r round(newmean,2)` and `r round(newmedian,2)` respectively, which differ from the estimates from the first part of the assignment. So imputing missing data will change the estimates of the total daily number of steps. In fact it will make them larger when changed, because days previously with all missing values will now have positive totals instead of zero, and days previously with some but not all missing values will have larger totals.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -147,7 +147,7 @@ table(newact$weekday)
 tssteps<-tapply(newact$steps,interaction(newact$interval,newact$weekday),mean)
 ```
 
-    As before, I need to get the x-axis labels next.
+As before, I need to get the x-axis labels next.
 
 ```{r}
 fac<-dimnames(tssteps)[[1]]
@@ -156,13 +156,13 @@ interval<-sapply(facsplit,function(x){x[1]})
 weekday<-sapply(facsplit,function(x){x[2]})
 ```
 
-    I am going to make the panel plot by using the lattice plotting system, thus I need to collect the relevant variables together into a data frame for my convenience.
+I am going to make the panel plot by using the lattice plotting system, thus I need to collect the relevant variables together into a data frame for my convenience.
 
 ```{r}
 paneldat<-data.frame(tssteps,Interval=as.integer(interval),weekday)
 ```
 
-    Now I make the requested panel plot. One can see that the activity patterns between weekdays and weekends are different.
+Now I make the requested panel plot. One can see that the activity patterns between weekdays and weekends are different.
 
 ```{r}
 library(lattice)
